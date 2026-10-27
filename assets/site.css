@@ -602,3 +602,18 @@ ul.pensieri>li::before{content:'';position:absolute;left:0;top:.75em;width:1.1re
 .icopy.c3 .btns{margin-top:1.6rem;pointer-events:auto;}
 .icopy.c3 .eyebrow{margin-bottom:1rem;}
 @media (max-width:640px){.icopy.c3{bottom:calc(env(safe-area-inset-bottom) + 5.2rem);}.icopy.c3 .btns .btn{width:100%;}}
+
+/* Intro: call to action fisse in basso in tutti e tre i momenti (al posto di «Entra»/«scorri») */
+.ictrl .icta{display:flex;flex-wrap:wrap;gap:.8rem;}
+.icopy.c3{bottom:clamp(7.5rem,16vh,10rem);}
+@media (max-width:640px){
+  .ictrl{flex-direction:column-reverse;align-items:stretch;gap:.9rem;}
+  .ictrl .skip{align-self:flex-end;}
+  .ictrl .icta{flex-direction:column;gap:.6rem;}
+  .ictrl .icta .btn{width:100%;justify-content:center;}
+  .icopy,.icopy.c3{bottom:calc(env(safe-area-inset-bottom) + 12.5rem);}
+}
+@media (max-width:640px){
+  .ictrl .icta .btn{padding:.9rem 1rem;font-size:.66rem;letter-spacing:.12em;white-space:nowrap;}
+  .icopy,.icopy.c3{bottom:calc(env(safe-area-inset-bottom) + 13.2rem);}
+}

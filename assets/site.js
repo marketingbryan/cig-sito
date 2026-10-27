@@ -116,12 +116,14 @@
         el.style.opacity = String(vis[i]); el.style.transform = `translateY(${(1 - vis[i]) * 16}px)`;
         el.style.pointerEvents = vis[i] > 0.6 ? 'auto' : 'none';
       });
-      /* nel terzo momento il bottone «Entra» lascia spazio alle call to action */
-      const end = seg(p, 0.74, 0.8);
-      btn.style.opacity = String(1 - end); btn.style.pointerEvents = end > 0.5 ? 'none' : '';
-      if (hint) hint.style.opacity = String(1 - end);
-      const next = STOPS.findIndex(s => p < s - 0.01);
-      btnTxt.textContent = LABELS[Math.max(0, Math.min(1, next))];
+      /* le call to action restano fisse in basso in tutti e tre i momenti */
+      if (btn) {
+        const end = seg(p, 0.74, 0.8);
+        btn.style.opacity = String(1 - end); btn.style.pointerEvents = end > 0.5 ? 'none' : '';
+        if (hint) hint.style.opacity = String(1 - end);
+        const next = STOPS.findIndex(s => p < s - 0.01);
+        btnTxt.textContent = LABELS[Math.max(0, Math.min(1, next))];
+      }
     };
 
     let anim = null;
@@ -137,7 +139,7 @@
       anim = requestAnimationFrame(stepF);
     };
     const yAt = p => intro.offsetTop + p * (intro.offsetHeight - innerHeight);
-    btn.addEventListener('click', () => {
+    if (btn) btn.addEventListener('click', () => {
       const p = progress();
       const next = STOPS.find(s => p < s - 0.01);
       if (next === undefined) tweenTo(content.offsetTop, 900);
@@ -148,7 +150,7 @@
 
     if (reduce) {
       intro.style.height = '100vh';
-      btn.style.display = 'none'; ext.style.opacity = 0; home.style.opacity = 1; c[0].style.opacity = 0; c[2].style.opacity = 1; c[2].style.pointerEvents = 'auto';
+      if (btn) btn.style.display = 'none'; ext.style.opacity = 0; home.style.opacity = 1; c[0].style.opacity = 0; c[2].style.opacity = 1; c[2].style.pointerEvents = 'auto';
     } else {
       let ticking = false;
       addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { ticking = false; render(); }); } }, { passive: true });
