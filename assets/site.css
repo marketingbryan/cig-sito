@@ -810,3 +810,5 @@ body{font-size:18.5px;line-height:1.7;}
   .anni.anni-s b{font-size:2.8rem;}
   .anni.anni-s .pre,.anni.anni-s .post{font-size:.66rem;}
 }
+.anni.anni-s{transition:opacity .2s;}
+@media (max-width:640px){.anni.anni-s{display:none;}.iright{justify-content:flex-end;}}

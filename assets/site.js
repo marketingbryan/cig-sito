@@ -124,6 +124,9 @@
       const vis = [1 - seg(p, 0.12, 0.2),
                    seg(p, 0.48, 0.54) * (1 - seg(p, 0.64, 0.7)),
                    seg(p, 0.78, 0.86)];
+      /* «Da oltre 40 anni» solo con la prima foto */
+      const anni = $('.anni-s', intro);
+      if (anni) { anni.style.opacity = String(vis[0]); anni.style.visibility = vis[0] > 0.02 ? 'visible' : 'hidden'; }
       c.forEach((el, i) => {
         el.style.opacity = String(vis[i]); el.style.transform = `translateY(${(1 - vis[i]) * 16}px)`;
         el.style.pointerEvents = vis[i] > 0.6 ? 'auto' : 'none';
