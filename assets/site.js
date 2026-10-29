@@ -16,6 +16,18 @@
   };
 
   /* ── menu mobile ── */
+
+  /* mega menu «Prodotti»: clic (mobile e tastiera), chiusura con Esc o clic fuori */
+  const mega = $('.has-mega'), megaBtn = $('.mega-btn');
+  if (mega && megaBtn) {
+    megaBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      const open = mega.classList.toggle('open');
+      megaBtn.setAttribute('aria-expanded', open);
+    });
+    document.addEventListener('click', e => { if (!mega.contains(e.target)) { mega.classList.remove('open'); megaBtn.setAttribute('aria-expanded', 'false'); } });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { mega.classList.remove('open'); megaBtn.setAttribute('aria-expanded', 'false'); } });
+  }
   const burger = $('.burger'), nav = $('.nav');
   if (burger && nav) {
     burger.addEventListener('click', () => {

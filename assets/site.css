@@ -617,3 +617,186 @@ ul.pensieri>li::before{content:'';position:absolute;left:0;top:.75em;width:1.1re
   .ictrl .icta .btn{padding:.9rem 1rem;font-size:.66rem;letter-spacing:.12em;white-space:nowrap;}
   .icopy,.icopy.c3{bottom:calc(env(safe-area-inset-bottom) + 13.2rem);}
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   DEBRIEF 28/10/2026
+   ═══════════════════════════════════════════════════════════════════ */
+:root{--brand-bordeaux:#7A0E2E;--brand-red:#B11544;}
+
+/* testi più leggibili: pubblico anche anziano */
+body{font-size:18.5px;line-height:1.7;}
+.small{font-size:.95rem;}
+.eyebrow{font-size:.8rem;letter-spacing:.16em;}
+.lead{font-size:clamp(1.35rem,2.1vw,1.7rem);}
+.prose p,.prose li{font-size:1.06rem;}
+.tab td,.tab th{font-size:1rem;}
+.crumbs{font-size:.88rem;}
+.ftr a{font-size:1rem;}
+.review p{font-size:1.35rem;}
+.tile p,.profilo p{font-size:1.02rem;}
+.tile h3{font-size:1.75rem;}
+.datum span{font-size:.95rem;}
+
+/* card delle situazioni: titoli e sottotitoli più grandi, anche su due righe */
+.card h3{font-size:clamp(1.8rem,2.4vw,2.2rem);line-height:1.12;margin:.6rem 0 .7rem;text-transform:none;letter-spacing:0;}
+.card p{font-size:1.12rem;line-height:1.45;text-transform:none;}
+.card .n{font-size:1.15rem;}
+.card .go{font-size:.8rem;}
+.card.note .n{font-size:clamp(1.6rem,2.2vw,2rem);font-style:italic;line-height:1.15;display:block;}
+.card.note h3{font-size:clamp(2rem,2.8vw,2.6rem);}
+.light .card.note,.card.note{background:var(--brand-bordeaux);}
+
+/* i quattro punti: titoletti più grandi e marcati */
+.fact h3{font-size:clamp(1.7rem,2.3vw,2.1rem);font-weight:500;line-height:1.15;}
+.fact p{font-size:1.06rem;}
+
+/* architetti: bordeaux del brand al posto del viola */
+.arch{background:var(--brand-bordeaux);}
+
+/* ─── header: telefono sempre visibile + mega menu Prodotti ─── */
+.hdr .wrap{gap:1.4rem;}
+.hdr .logo{order:1;margin-right:auto;}
+.nav{order:2;gap:clamp(.9rem,1.5vw,1.6rem);}
+.hdr-tel{order:3;display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;color:#fff;font-weight:500;
+  font-size:1rem;letter-spacing:.02em;padding:.55rem 1rem;border:1px solid rgba(244,239,229,.45);white-space:nowrap;}
+.hdr-tel:hover{background:rgba(244,239,229,.1);}
+.burger{order:4;}
+.nav a{font-size:.9rem;}
+.nav .btn{font-size:.78rem;}
+.ico{flex:none;}
+.has-mega{position:static;}
+.mega-btn{background:none;border:0;font:inherit;font-size:.9rem;color:#fff;letter-spacing:.06em;cursor:pointer;display:inline-flex;align-items:center;gap:.45rem;
+  text-shadow:0 1px 10px rgba(0,0,0,.55);padding:0;}
+.mega-btn.on{box-shadow:inset 0 -1px 0 var(--sand);padding-bottom:3px;}
+.mega-btn .car{width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .3s;}
+.mega{position:absolute;left:0;right:0;top:100%;background:rgba(14,13,14,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .25s,transform .25s,visibility .25s;}
+.mega-in{width:var(--wrap);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr) 1.2fr;gap:2.4rem;padding:2.2rem 0 2.6rem;}
+.mega .mh{font-family:var(--serif);font-size:1.6rem;color:#fff;text-decoration:none;display:inline-block;margin-bottom:.8rem;letter-spacing:0;}
+.mega ul{list-style:none;display:grid;gap:.5rem;}
+.mega ul a{font-size:1rem;color:rgba(244,239,229,.82);letter-spacing:0;}
+.mega ul a:hover{color:#fff;}
+.mega .mnote p{color:rgba(244,239,229,.8);font-size:1rem;margin:.4rem 0 1rem;}
+@media (min-width:1241px){
+  .has-mega:hover .mega,.has-mega:focus-within .mega,.has-mega.open .mega{opacity:1;visibility:visible;transform:none;}
+  .has-mega:hover .car,.has-mega.open .car{transform:rotate(225deg) translateY(-2px);}
+}
+/* menu a tendina sotto i 1240px (tante voci) */
+@media (max-width:1240px){
+  .nav{position:fixed;inset:76px 0 0 0;background:var(--ink);flex-direction:column;align-items:flex-start;
+    gap:0;padding:1.4rem 6vw 6rem;transform:translateX(100%);transition:transform .45s var(--ease);overflow-y:auto;}
+  .nav.open{transform:none;}
+  .nav > li{width:100%;border-bottom:1px solid var(--line);}
+  .nav > li > a,.mega-btn{display:flex;width:100%;font-family:var(--serif);font-size:1.75rem;padding:.85rem 0;color:var(--ivory);letter-spacing:0;justify-content:space-between;}
+  .nav li.nav-cta{border:0;padding-top:1.4rem;}
+  .nav .btn{font-family:var(--sans);font-size:.85rem;width:100%;}
+  .burger{display:block;}
+  .mega{position:static;opacity:1;visibility:visible;transform:none;background:none;border:0;backdrop-filter:none;display:none;}
+  .has-mega.open .mega{display:block;}
+  .has-mega.open .car{transform:rotate(225deg);}
+  .mega-in{width:auto;grid-template-columns:1fr;gap:1.4rem;padding:.4rem 0 1.4rem;}
+  .mega .mh{font-size:1.3rem;margin-bottom:.4rem;}
+  .mega .mnote{display:none;}
+  body.menu-open{overflow:hidden;}
+  body.menu-open .burger span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  body.menu-open .burger span:nth-child(2){opacity:0;}
+  body.menu-open .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+}
+@media (max-width:640px){
+  .hdr-tel{padding:0;width:44px;height:44px;justify-content:center;border-radius:50%;}
+  .hdr-tel span{display:none;}
+}
+
+/* ─── intro: «Da oltre 40 anni», il 40 in grande ─── */
+.anni{display:flex;align-items:center;gap:.9rem;margin-bottom:1.2rem;color:#E2D2B4;text-shadow:0 2px 20px rgba(0,0,0,.8);}
+.anni b{font-family:var(--serif);font-weight:400;font-size:clamp(4.6rem,9vw,7.6rem);line-height:.8;color:#fff;letter-spacing:-.02em;}
+.anni .pre,.anni .post{font-size:.82rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;line-height:1.35;}
+@media (min-width:900px){.icopy.c1 .anni{justify-content:flex-start;}}
+.icta-tel{display:inline-flex;}
+@media (max-width:640px){.icta-tel{display:none;}.anni b{font-size:4.2rem;}}
+
+/* ─── blocco «siamo produttori» ─── */
+.prodband{background:var(--brand-bordeaux);color:#F4EFE5;padding:clamp(3.4rem,7vw,5.5rem) 0;}
+.prodband .eyebrow{color:#E9C9D2;}
+.prodband h2{font-size:clamp(2rem,3.6vw,3rem);line-height:1.1;margin-bottom:1.2rem;}
+.prodband h2 em{color:#F6DCE3;}
+.prodband p{font-size:1.1rem;color:rgba(244,239,229,.92);margin-bottom:1rem;max-width:58ch;}
+.prodband .btn.ghost{border-color:rgba(244,239,229,.6);}
+.certs{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+.certs figure{background:#fff;padding:1.4rem 1.2rem 1.1rem;display:flex;flex-direction:column;align-items:center;gap:.9rem;text-align:center;}
+.certs img{height:96px;width:auto;object-fit:contain;}
+.certs figcaption{font-size:.9rem;line-height:1.35;color:#1B1718;}
+
+/* ─── misure, telefono, cataloghi, detrazioni ─── */
+.misure{border:1px solid var(--line);border-left:3px solid var(--brand-red);padding:1.5rem 1.6rem;margin-top:2rem;}
+.misure h3{font-size:1.55rem;margin:.3rem 0 .6rem;}
+.misure p{font-size:1.05rem;}
+.light .misure{background:#fff;border-color:rgba(27,23,24,.12);border-left-color:var(--brand-red);}
+.telbox{margin-top:1.6rem;}
+.telbox .tb-t{font-family:var(--serif);font-size:1.5rem;line-height:1.2;margin:.2rem 0 .5rem;}
+.tb-num{display:inline-flex;align-items:center;gap:.7rem;font-family:var(--serif);font-size:clamp(2.2rem,4vw,3rem);line-height:1.1;
+  color:var(--ivory);text-decoration:none;margin-bottom:.4rem;}
+.tb-num .ico{width:30px;height:30px;color:var(--brand-red);}
+.light .tb-num .ico{color:var(--brand-red);}
+.catband,.fiscband{display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;}
+.catband h2,.fiscband h2{font-size:clamp(1.8rem,3vw,2.5rem);margin:.4rem 0 .8rem;}
+.catband p,.fiscband p{max-width:60ch;font-size:1.08rem;color:var(--muted);}
+.cta-note{margin-top:1.4rem;font-size:1rem;color:rgba(244,239,229,.9);}
+.cta-show .btns .btn.ghost{display:inline-flex;}
+.hero-tel{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.6rem;}
+
+/* ─── cataloghi ─── */
+.catgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
+.catcard{display:flex;flex-direction:column;background:#fff;text-decoration:none;color:#1B1718;border:1px solid rgba(27,23,24,.1);transition:transform .3s,box-shadow .3s;}
+.catcard:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,0,0,.12);}
+.cc-top{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;background:#F4EFE5;overflow:hidden;}
+.cc-top img{width:70%;height:auto;mix-blend-mode:multiply;}
+.cc-brand{font-family:var(--serif);font-size:3rem;letter-spacing:.2em;color:#7A0E2E;}
+.cc-body{padding:1.4rem 1.5rem 1.6rem;display:flex;flex-direction:column;gap:.5rem;flex:1;}
+.cc-body h3{font-size:1.6rem;}
+.cc-body p{font-size:1rem;color:rgba(27,23,24,.75);}
+.cc-body .go{margin-top:auto;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:#7A0E2E;font-weight:500;}
+@media (max-width:960px){.catgrid{grid-template-columns:1fr 1fr;}}
+@media (max-width:600px){.catgrid{grid-template-columns:1fr;}}
+
+/* ─── sezioni dei profili (schede del produttore, fondo bianco) ─── */
+.render.sez{background:#fff;}
+.render.sez img{width:100%;height:auto;object-fit:contain;}
+.profilo .render.sez{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;}
+.profilo .claim{color:var(--sand);font-family:var(--serif);font-style:italic;font-size:1.2rem;}
+
+/* ─── realizzazioni ─── */
+.loc{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sand);font-weight:500;}
+.loc-tbc{color:#B11544;}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.gallery.g3{grid-template-columns:repeat(3,1fr);margin-top:2rem;}
+.gal-i img{width:100%;height:auto;display:block;aspect-ratio:4/3;object-fit:cover;}
+@media (max-width:860px){.gallery,.gallery.g3{grid-template-columns:1fr;}}
+
+/* ─── come prendere le misure ─── */
+.msteps{list-style:none;display:grid;gap:2rem;}
+.mstep{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:2rem;align-items:center;}
+.ms-img img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block;}
+.mstep .n{font-family:var(--serif);font-style:italic;font-size:1.4rem;color:var(--sand);}
+.mstep h3{font-size:clamp(1.7rem,2.6vw,2.2rem);margin:.3rem 0 .6rem;}
+.mstep p{font-size:1.1rem;max-width:52ch;}
+@media (max-width:760px){.mstep{grid-template-columns:1fr;gap:1rem;}}
+
+/* ─── footer a quattro colonne, telefono in evidenza ─── */
+.ftr .top.top4{grid-template-columns:1.3fr 1fr 1fr 1fr;}
+.ftel a{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--serif);font-size:1.9rem;color:var(--ivory);margin:.2rem 0 1rem;}
+@media (max-width:1060px){.ftr .top.top4{grid-template-columns:1fr 1fr;}}
+@media (max-width:600px){.ftr .top.top4{grid-template-columns:1fr;}}
+
+/* sticky mobile: Chiama + Prenota */
+.sticky a{font-size:.8rem;gap:.5rem;}
+@media (max-width:1240px){
+  .nav .mega li{border:0;width:auto;}
+  .nav .mega ul a{display:block;font-family:var(--sans);font-size:1.08rem;padding:.4rem 0;color:rgba(244,239,229,.85);}
+  .nav .mega .mh{display:block;font-family:var(--serif);font-size:1.35rem;padding:.4rem 0;}
+}
+.mega-btn{color:#fff;font-weight:400;font-family:var(--sans);}
+@media (max-width:1240px){
+  .nav .mega-btn{font-family:var(--serif);font-weight:300;font-size:1.75rem;}
+  .nav .mega li:last-child{padding-top:0;}
+}
