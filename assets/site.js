@@ -112,7 +112,7 @@
     const render = () => {
       const p = progress();
       /* 1 · la sede: ci si avvicina fino all'ingresso */
-      img(ext).style.transform = `scale(${1 + Math.pow(ease(seg(p, 0.06, 0.42)), 1.3) * 2.6})`;
+      img(ext).style.transform = `scale(${1 + Math.pow(ease(seg(p, 0.06, 0.42)), 1.3) * 0.45})`;  /* zoom contenuto: la foto resta nitida */
       img(ext).style.filter = `blur(${(seg(p, 0.36, 0.46) * 5).toFixed(1)}px)`;
       ext.style.opacity = String(1 - seg(p, 0.38, 0.48));
       /* 2 · la produzione */

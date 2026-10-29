@@ -800,3 +800,13 @@ body{font-size:18.5px;line-height:1.7;}
   .nav .mega-btn{font-family:var(--serif);font-weight:300;font-size:1.75rem;}
   .nav .mega li:last-child{padding-top:0;}
 }
+/* «Da oltre 40 anni» sopra «Salta intro» */
+.iright{display:flex;flex-direction:column;align-items:flex-end;gap:.9rem;}
+.anni.anni-s{margin:0;gap:.7rem;}
+.anni.anni-s b{font-size:clamp(3.2rem,5vw,4.4rem);}
+.anni.anni-s .pre,.anni.anni-s .post{font-size:.74rem;}
+@media (max-width:640px){
+  .iright{flex-direction:row;align-items:center;justify-content:space-between;width:100%;}
+  .anni.anni-s b{font-size:2.8rem;}
+  .anni.anni-s .pre,.anni.anni-s .post{font-size:.66rem;}
+}
