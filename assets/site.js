@@ -100,6 +100,7 @@
     const c = [1, 2, 3].map(i => $('.c' + i, intro));
     const btn = $('#btnOpen'), btnTxt = $('#btnOpen .t'), skip = $('#skipIntro'), hint = $('.hint', intro);
     const content = document.getElementById('contenuto');
+    const cue = $('#introCue', intro), stageEl = $('.stage', intro);
     const STOPS = [0.56, 0.92];
     const LABELS = ['Entra', 'Continua'];
     const progress = () => {
@@ -112,7 +113,25 @@
     const render = () => {
       const p = progress();
       /* 1 · la sede: ci si avvicina fino all'ingresso */
-      img(ext).style.transform = `scale(${1 + Math.pow(ease(seg(p, 0.06, 0.42)), 1.3) * 0.45})`;  /* zoom contenuto: la foto resta nitida */
+      /* si parte con tutta la facciata in vista, poi ci si avvicina all'ingresso */
+      {
+        const W = innerWidth, H = stageEl.clientHeight, A = 2252 / 1267, B = 1000;
+        const mob = W < 900;
+        const Dc = Math.max(W, H * A);                        /* larghezza «cover» */
+        let D0 = Math.min(W, (mob ? 0.95 : 1.18) * H * A);    /* tutta la fronte, il più grande possibile */
+        if (D0 > Dc * 0.88) D0 = Dc;
+        const D1 = Dc * (mob ? 1.25 : 1.45);
+        const t = Math.pow(ease(seg(p, 0.04, 0.42)), 1.15);
+        const D = D0 * Math.pow(D1 / D0, t);
+        const fx = 0.5, fy = 0.56 + 0.07 * t;                 /* punto dell'immagine: dal centro della fronte all'ingresso */
+        const vy0 = mob ? 0.27 : 0.56, vy1 = mob ? 0.5 : 0.56, vx = W / 2, vy = H * (vy0 + (vy1 - vy0) * t);
+        let tx = vx - fx * D, ty = vy - fy * D / A;
+        if (D >= W) tx = clamp(tx, W - D, 0);
+        if (D / A >= H) ty = clamp(ty, H - D / A, 0);
+        const fg = img(ext);
+        fg.style.transform = `translate(${tx.toFixed(1)}px,${ty.toFixed(1)}px) scale(${(D / B).toFixed(4)})`;
+      }
+      if (cue) { const v = 1 - seg(p, 0.03, 0.1); cue.style.opacity = String(v); cue.style.pointerEvents = v > 0.5 ? 'auto' : 'none'; }
       img(ext).style.filter = `blur(${(seg(p, 0.36, 0.46) * 5).toFixed(1)}px)`;
       ext.style.opacity = String(1 - seg(p, 0.38, 0.48));
       /* 2 · la produzione */
@@ -160,6 +179,7 @@
       if (next === undefined) tweenTo(content.offsetTop, 900);
       else tweenTo(yAt(next));
     });
+    if (cue) cue.addEventListener('click', () => tweenTo(yAt(STOPS[0])));
     skip.addEventListener('click', () => { if (anim) cancelAnimationFrame(anim); scrollTo(0, content.offsetTop); content.focus({ preventScroll: true }); });
     ['wheel', 'touchstart', 'keydown'].forEach(ev => addEventListener(ev, () => { if (anim) { cancelAnimationFrame(anim); anim = null; } }, { passive: true }));
 

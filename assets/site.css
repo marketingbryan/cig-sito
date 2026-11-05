@@ -825,3 +825,23 @@ body{font-size:18.5px;line-height:1.7;}
 .rgal .gal-i{margin:0;overflow:hidden;background:#1B1718;}
 .rgal .gal-i img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;}
 @media (max-width:860px){.rgal,.rgal.g3{grid-template-columns:1fr;}}
+
+/* ─── intro: tutta la facciata all'inizio, poi lo zoom; invito a scorrere ─── */
+.scene.s-ext{overflow:hidden;}
+.scene.s-ext::before{content:'';position:absolute;inset:-60px;background:url(img/sede-grigia-960.webp) center 60%/cover;filter:blur(28px) brightness(.55);}
+.scene.s-ext img{position:absolute;left:0;top:0;width:1000px;max-width:none;height:auto;aspect-ratio:2252/1267;object-fit:fill;transform-origin:0 0;}
+.icue{position:absolute;z-index:9;left:50%;transform:translateX(-50%);bottom:calc(100% + 1.4rem);
+  display:flex;align-items:center;gap:.8rem;background:rgba(7,7,10,.35);border:1px solid rgba(244,239,229,.35);border-radius:999px;
+  padding:.55rem 1.2rem .55rem .7rem;color:#F4EFE5;cursor:pointer;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;transition:opacity .25s,background .25s;min-height:44px;white-space:nowrap;}
+.icue:hover{background:rgba(7,7,10,.6);}
+.icue b{font-weight:600;color:var(--sand);}
+.icue-m{width:20px;height:31px;border:1.5px solid rgba(244,239,229,.85);border-radius:11px;position:relative;flex:none;}
+.icue-m i{position:absolute;left:50%;top:6px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:var(--sand);animation:icue 1.7s ease-in-out infinite;}
+@keyframes icue{0%{transform:translateY(0);opacity:1;}70%{transform:translateY(10px);opacity:0;}100%{transform:translateY(0);opacity:0;}}
+@media (max-width:640px){
+  .iright{justify-content:space-between !important;}
+  .icue{position:static;transform:none;font-size:.64rem;letter-spacing:.12em;padding:.35rem .9rem .35rem .45rem;gap:.55rem;min-height:40px;}
+  .icue-m{width:16px;height:25px;}
+}
+@media (prefers-reduced-motion:reduce){.icue{display:none;}.icue-m i{animation:none;}}
