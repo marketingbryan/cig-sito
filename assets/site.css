@@ -845,3 +845,10 @@ body{font-size:18.5px;line-height:1.7;}
   .icue-m{width:16px;height:25px;}
 }
 @media (prefers-reduced-motion:reduce){.icue{display:none;}.icue-m i{animation:none;}}
+
+/* officina (DSCF2395): nei formati stretti si sposta l'inquadratura per non tagliare le teste */
+img.op-off{object-position:72% 50%;}
+@media (max-width:900px){img.op-off{object-position:100% 50%;}}
+/* team all'ingresso (DSCF2244) a schermo intero: sul telefono restano dentro tre teste su quattro, nessuna tagliata */
+img.op-team{object-position:50% 27%;}
+@media (max-width:600px){img.op-team{object-position:90% 27%;}}

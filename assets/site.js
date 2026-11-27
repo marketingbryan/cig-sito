@@ -211,7 +211,7 @@
     const VAR = JSON.parse($('#lp-varianti').textContent);
     const v = VAR[q.get('tema')] || VAR[''];
     $('#lpH1').textContent = v.h1;
-    const img = $('#lpImg'); img.src = v.img; img.alt = v.alt;
+    const img = $('#lpImg'); img.src = v.img; img.alt = v.alt; img.className = v.cls || ''; img.style.objectPosition = v.pos || '';
     ['utm_source', 'utm_campaign', 'utm_content'].forEach(k => { const el = $(`[name="${k}"]`); if (el) el.value = q.get(k) || ''; });
     const tema = $('[name="tema"]'); if (tema) tema.value = q.get('tema') || '';
     /* il selettore rapido precompila la situazione del form */
